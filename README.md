@@ -25,3 +25,5 @@ For more information
 --------------------
 
 The [140byt.es](http://140byt.es) site hasn't launched yet, but for now follow [@140bytes](http://twitter.com/140bytes) on Twitter.
+
+140byt.es is brought to you by [Jed Schmidt](http://jed.is). It was inspired by work from [Thomas Fuchs](http://mir.aculo.us) and [Dustin Diaz](http://www.dustindiaz.com/).
