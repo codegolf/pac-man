@@ -1,4 +1,16 @@
 {
+  // [REQUIRED] A name for your library.
+  // This must match /^[a-z_]\w*$/i
   "name": "140bytes",
-  "keywords": [ "140bytes", "master", "rules" ]
+
+  // [OPTIONAL] A description of your library, phrased as a verb predicate.
+  // The gist description is used by default.
+  "description": "Explain the 140byt.es rules."
+
+  // [OPTIONAL] Up to 5 keywords used for indexing.
+  "keywords": [
+    "140bytes",
+    "master",
+    "rules" 
+  ]
 }
