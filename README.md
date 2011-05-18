@@ -1,7 +1,7 @@
 140byt.es
 =========
 
-All the Codes that Fits in Tweet
+A tweet-sized, fork-to-play, community-curated collection of JavaScript.
 
 How to play
 -----------
@@ -12,4 +12,5 @@ How to play
 
 For more information
 --------------------
-The 140byt.es site launched yet, but for now follow [@140bytes](http://twitter.com/140bytes) on Twitter, and keep you eye on http://140byt.es.
+
+The [140byt.es](http://140byt.es) site hasn't launched yet, but for now follow [@140bytes](http://twitter.com/140bytes) on Twitter.
