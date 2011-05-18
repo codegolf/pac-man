@@ -1,1 +1,1 @@
-function(){/******************************************************************************************************************************/}
+function(){/*Rules: (1) anonymous function (2) optionally self-executing (3) <140 bytes (4) no global vars (5) MIT license (6) good luck!*/}
