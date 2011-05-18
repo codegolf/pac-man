@@ -14,8 +14,8 @@ Rules
 -----
 All entries must exist in an `index.js` file, whose contents are
 
-1. a valid Javascript function expression, that is
-2. is optionally self-executing,
+1. a valid Javascript function expression, that
+2. optionally self-executes,
 2. contains no more than 140 bytes, and
 3. does not pollute global scope.
 
