@@ -5,7 +5,7 @@
 
   // [OPTIONAL] A description of your library, phrased as a verb predicate.
   // The gist description is used by default.
-  "description": "Explain the 140byt.es rules."
+  "description": "Explain the 140byt.es rules.",
 
   // [OPTIONAL] Up to 5 keywords used for indexing.
   "keywords": [
