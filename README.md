@@ -10,6 +10,8 @@ How to play
 2. Modify all the files to according to the rules below.
 3. Save your entry and tweet it up!
 
+Keep in mind that thanks to the awesome sensibilities of the GitHub team, gists are just repos. So feel free to clone yours and work locally for a more comfortable environment, and to allow commit messages.
+
 Rules
 -----
 All entries must exist in an `index.js` file, whose contents are
