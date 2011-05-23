@@ -16,12 +16,11 @@ Rules
 -----
 All entries must exist in an `index.js` file, whose contents are
 
-1. a valid Javascript function expression, that
-2. optionally self-executes,
+1. an assignable, valid Javascript expression, that
 2. contains no more than 140 bytes, and
-3. does not pollute global scope.
+3. does not leak to the global scope.
 
-All entries must also be licensed under the MIT license.
+All entries must also be licensed under a license as or more permitting than the MIT license.
 
 For more information
 --------------------
