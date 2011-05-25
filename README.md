@@ -16,7 +16,7 @@ Rules
 -----
 All entries must exist in an `index.js` file, whose contents are
 
-1. an assignable, valid Javascript expression, that
+1. an assignable, valid Javascript expression that
 2. contains no more than 140 bytes, and
 3. does not leak to the global scope.
 
