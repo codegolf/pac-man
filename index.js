@@ -1,1 +1,1 @@
-function(){/******************************************************************************************************************************/}
+function(){/* Your entry, a useful, unique, and valid JavaScript expression that packs as much functionality into 140 bytes as possible. */}
