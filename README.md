@@ -25,7 +25,7 @@ All entries must also be licensed under the [WTFPL](http://sam.zoy.org/wtfpl/) o
 For more information
 --------------------
 
-See the [140byt.es](http://140byt.es) for a showcase of entries built itself using 140-byte entries, and follow [@140bytes](http://twitter.com/140bytes) on Twitter.
+See the [140byt.es](http://140byt.es) site for a showcase of entries (built itself using 140-byte entries!), and follow [@140bytes](http://twitter.com/140bytes) on Twitter.
 
 To learn about byte-saving hacks for your own code, or to contribute what you've learned, head to [the wiki](https://github.com/jed/140bytes/wiki/Byte-saving-techniques).
 
