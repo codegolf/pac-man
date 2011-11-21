@@ -1,1 +1,1 @@
-function(){/* Your entry, a useful, unique, and valid JavaScript expression that packs as much functionality into 140 bytes as possible. */}
+function(l,k,w){l[l.x]=' ';if(l[l.x+l.d]=='#')l.d=0;if(k>36&&k<41&&l[l.x+(k=k%2?k-38:(k-39)*w)]!='#')l.d=k;l.p+=l[l.x+=l.d]=='.';l[l.x]='P'}

@@ -1,13 +1,10 @@
 {
-  "name": "theNameOfYourLibWhichMustBeAValidCamelCasedJavaScriptIdentifier",
+  "name": "pacMan",
 
-  "description": "This should be a short description of your entry.",
+  "description": "Pac-Man made with 140byte.es snippets.",
 
   "keywords": [
-    "five",
-    "descriptive",
-    "keywords",
-    "or",
-    "fewer"
+    "game",
+    "pacman"
   ]
 }

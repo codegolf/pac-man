@@ -1,12 +1,81 @@
-<!DOCTYPE html> 
-<title>Foo</title>
-<div>Expected value: <b>undefined</b></div>
-<div>Actual value: <b id="ret"></b></div>
+<!DOCTYPE HTML>
+<pre>Loading...</pre>
+<span id="points">0</span> points
+<style type="text/css">
+  body { background: #000; color: #FFF; font-family: Consolas, monospace; margin: 4em; text-shadow: 0 0 0.2em #FFF; }
+  pre { font-size: 4em; line-height: 0.55em; margin: 0; }
+  .air { color: #222; text-shadow: 0 0 0.2em #222; }
+  .wall { color: #30F; text-shadow: 0 0 0.2em #30F; }
+  .player { color: #FF0; text-shadow: 0 0 0.2em #FF0; }
+  #points { font-size: 2em; line-height: 2em; }
+</style>
 <script>
-  // write a small example that shows off the API for your example
-  // and tests it in one fell swoop.
-
-  var myFunction = function(){ /* the code here should be identical to the entry. */ }
-
-  document.getElementById( "ret" ).innerHTML = myFunction()
+// 153 bytes, any idea how to save 13 bytes?
+var setInnerHTML = function(a, h)
+{
+  a = /(\W?)(.*)/.exec(a);
+  (a[1] == '#'
+    ? document.getElementById(a[2])
+    : document['getElementsBy' + (a[1] ? 'Class' : 'Tag') + 'Name'](a[2])[0]
+  ).innerHTML = h
+}
+// 97 bytes, maybe use the remaining 43 bytes to make this more flexible?
+var parseLevel = function(l, w)
+{
+  l = l.join ? l.join('\n') : l;
+  w = l.indexOf('\n') + 1;
+  l = l.split('');
+  l.w = w;
+  l.d = l.p = 0;
+  return l
+}
+// 99 bytes, should be enough to add a "you won" screen.
+var renderLevel = function(l, t)
+{
+  for (var h = '', x = 0; x < l.length; x++)
+  {
+    if (l[x] == 'P') l.x = x;
+    h += t[l[x]] ? t[l[x]] : l[x]
+  }
+  return h
+}
+// 140 bytes
+var updateLevel = function(l, k, w)
+{
+  l[l.x] = ' ';
+  if (l[l.x + l.d] == '#')
+    l.d = 0;
+  if (k > 36 && k < 41 && l[l.x + (k = k % 2 ? k - 38 : (k - 39) * w)] != '#')
+    l.d = k;
+  l.p += l[l.x += l.d] == '.';
+  l[l.x] = 'P'
+}
+var theme = {
+  ' ': '<span class="air">\u2219</span>',
+  '.': '<span class="gold">\u2219</span>',
+  '#': '<span class="wall">\u25A1</span>',
+  'P': '<span class="player">\u263B</span>'
+};
+var level = parseLevel(
+  '###################\n' +
+  '#....#.......#....#\n' +
+  '#.##.#.#####.#.##.#\n' +
+  '#.#.............#.#\n' +
+  '#.#.##.##.##.##.#.#\n' +
+  '#......#...#......#\n' +
+  '#.#.##.#####.##.#.#\n' +
+  '#.#......P......#.#\n' +
+  '#.##.#.#####.#.##.#\n' +
+  '#....#.......#....#\n' +
+  '###################');
+window.onkeydown = function(e)
+{
+  level.keyCode = (e || window.event).keyCode;
+}
+window.setInterval(function()
+{
+  setInnerHTML('PRE', renderLevel(level, theme));
+  setInnerHTML('#points', level.p);
+  updateLevel(level, level.keyCode, level.w);
+}, 250)
 </script>
