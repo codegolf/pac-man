@@ -10,14 +10,13 @@
   #points { font-size: 2em; line-height: 2em; }
 </style>
 <script>
-// 153 bytes, any idea how to save 13 bytes?
-var setInnerHTML = function(a, h)
+// 144 bytes, any idea how to save 4 bytes?
+var getFirstElement = function(a)
 {
   a = /(\W?)(.*)/.exec(a);
-  (a[1] == '#'
+  return a[1] == '#'
     ? document.getElementById(a[2])
     : document['getElementsBy' + (a[1] ? 'Class' : 'Tag') + 'Name'](a[2])[0]
-  ).innerHTML = h
 }
 // 97 bytes, maybe use the remaining 43 bytes to make this more flexible?
 var parseLevel = function(l, w)
@@ -29,23 +28,25 @@ var parseLevel = function(l, w)
   l.d = l.p = 0;
   return l
 }
-// 99 bytes, should be enough to add a "you won" screen.
+// 138 bytes
 var renderLevel = function(l, t)
 {
-  for (var h = '', x = 0; x < l.length; x++)
+  for (var h = '', g = x = 0; x < l.length; x++)
   {
+    g += l[x] == '.';
     if (l[x] == 'P') l.x = x;
     h += t[l[x]] ? t[l[x]] : l[x]
   }
+  if (!g) h += '\n\nYou win!';
   return h
 }
 // 140 bytes
-var updateLevel = function(l, k, w)
+var updateLevel = function(l, k)
 {
   l[l.x] = ' ';
   if (l[l.x + l.d] == '#')
     l.d = 0;
-  if (k > 36 && k < 41 && l[l.x + (k = k % 2 ? k - 38 : (k - 39) * w)] != '#')
+  if (k > 36 && k < 41 && l[l.x + (k = k % 2 ? k - 38 : (k - 39) * l.w)] != '#')
     l.d = k;
   l.p += l[l.x += l.d] == '.';
   l[l.x] = 'P'
@@ -74,8 +75,8 @@ window.onkeydown = function(e)
 }
 window.setInterval(function()
 {
-  setInnerHTML('PRE', renderLevel(level, theme));
-  setInnerHTML('#points', level.p);
-  updateLevel(level, level.keyCode, level.w);
+  getFirstElement('PRE').innerHTML = renderLevel(level, theme);
+  getFirstElement('#points').innerHTML = level.p;
+  updateLevel(level, level.keyCode);
 }, 250)
 </script>

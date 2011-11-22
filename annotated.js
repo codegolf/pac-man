@@ -1,4 +1,4 @@
-function(l, k, w)          //level, keyCode, level width
+function(l, k)             //level object, keyCode
 {
   l[l.x] = ' ';            //remove player from level
   if (l[l.x + l.d] == '#') //check if previous walking direction is possible
@@ -6,7 +6,7 @@ function(l, k, w)          //level, keyCode, level width
   if (k > 36 && k < 41 &&  //check if a cursor key was pressed
     l[l.x + (k = k % 2     //calculate walking direction
       ? k - 38             //-1 is left, +1 is right
-      : (k - 39) * w       //-width is up, +width is down
+      : (k - 39) * l.w     //-width is up, +width is down
     )] != '#')             //check if not walking into a wall
     l.d = k;               //set new walking direction
   l.p += l[l.x += l.d      //walk
