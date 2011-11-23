@@ -6,36 +6,35 @@
   pre { font-size: 4em; line-height: 0.55em; margin: 0; }
   .air { color: #222; text-shadow: 0 0 0.2em #222; }
   .wall { color: #30F; text-shadow: 0 0 0.2em #30F; }
-  .player { color: #FF0; text-shadow: 0 0 0.2em #FF0; }
+  .player { color: #FE0; text-shadow: 0 0 0.2em #FE0; }
   #points { font-size: 2em; line-height: 2em; }
 </style>
 <script>
-// 144 bytes, any idea how to save 4 bytes?
+// 138 bytes
 var getFirstElement = function(a)
 {
-  a = /(\W?)(.*)/.exec(a);
-  return a[1] == '#'
-    ? document.getElementById(a[2])
-    : document['getElementsBy' + (a[1] ? 'Class' : 'Tag') + 'Name'](a[2])[0]
+  a = /([#.]?)(.*)/.exec(a || '*');
+  a = document['getElement' + (a[1] > '-' ? 'sByClassName' : a[1] ? 'ById' : 'sByTagName')](a[2]);
+  return a[0] || a
 }
 // 97 bytes, maybe use the remaining 43 bytes to make this more flexible?
 var parseLevel = function(l, w)
 {
-  l = l.join ? l.join('\n') : l;
-  w = l.indexOf('\n') + 1;
-  l = l.split('');
-  l.w = w;
-  l.d = l.p = 0;
+  l = l.join ? l.join('\n') : l;  //if it's an Array of rows
+  w = l.indexOf('\n') + 1;        //calculate row length
+  l = l.split('');                //convert to character array
+  l.w = w;                        //width
+  l.d = l.p = 0;                  //walking direction and points
   return l
 }
 // 138 bytes
-var renderLevel = function(l, t)
+var renderLevel = function(l, t)  //level and theme objects
 {
   for (var h = '', g = x = 0; x < l.length; x++)
   {
-    g += l[x] == '.';
-    if (l[x] == 'P') l.x = x;
-    h += t[l[x]] ? t[l[x]] : l[x]
+    g += l[x] == '.';             //count gold
+    if (l[x] == 'P') l.x = x;     //store player position
+    h += t[l[x]] ? t[l[x]] : l[x] //theme is optional
   }
   if (!g) h += '\n\nYou win!';
   return h
