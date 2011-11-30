@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
-<pre>Loading...</pre>
-<span id="points">0</span> points
+<pre>LOADING...</pre>
+<h2 id="end"></h2>
+<span id="points">0</span> POINTS
 <style type="text/css">
-  body { background: #000; color: #FFF; font-family: Consolas, monospace; margin: 4em; text-shadow: 0 0 0.2em #FFF; }
-  pre { font-size: 4em; line-height: 0.55em; margin: 0; }
-  .air { color: #222; text-shadow: 0 0 0.2em #222; }
-  .wall { color: #30F; text-shadow: 0 0 0.2em #30F; }
-  .player { color: #FE0; text-shadow: 0 0 0.2em #FE0; }
+  * { color: #FFF; font-family: Consolas, monospace; text-shadow: 0 0 .2em #FFF; }
+  body { background: #000; margin: 4em; }
+  pre { font-size: 58px; line-height: 32px; margin: 0; }
+  img { border: 0; font-size: 32px; height: 32px; padding: 1px; vertical-align: top; width: 32px; }
+  h2 { font-size: 3em; margin: .2em 0; }
+  .air { color: #222; text-shadow: 0 0 .2em #222; }
+  .wall { color: #30F; text-shadow: 0 0 .2em #30F; }
+  .ghost { color: #A0F; text-shadow: 0 0 .2em #A0F; }
+  .player { color: #FD0; text-shadow: 0 0 .2em #FD0; }
   #points { font-size: 2em; line-height: 2em; }
 </style>
 <script>
@@ -17,62 +22,104 @@ var getFirstElement = function(a)
   a = document['getElement' + (a[1] > '-' ? 'sByClassName' : a[1] ? 'ById' : 'sByTagName')](a[2]);
   return a[0] || a
 }
-// 97 bytes, maybe use the remaining 43 bytes to make this more flexible?
-var parseLevel = function(l, w)
+// 69 bytes
+var getOuterHTML = function(a)
 {
-  l = l.join ? l.join('\n') : l;  //if it's an Array of rows
-  w = l.indexOf('\n') + 1;        //calculate row length
-  l = l.split('');                //convert to character array
-  l.w = w;                        //width
-  l.d = l.p = 0;                  //walking direction and points
-  return l
-}
-// 138 bytes
-var renderLevel = function(l, t)  //level and theme objects
-{
-  for (var h = '', g = x = 0; x < l.length; x++)
-  {
-    g += l[x] == '.';             //count gold
-    if (l[x] == 'P') l.x = x;     //store player position
-    h += t[l[x]] ? t[l[x]] : l[x] //theme is optional
-  }
-  if (!g) h += '\n\nYou win!';
-  return h
+  return a.outerHTML || XMLSerializer().serializeToString(a)
 }
 // 131 bytes
-var updateLevel = function(l, k)
+var parseLevel = function(l, w, c)
 {
-  l[l.x] = ' ';
-  l.d = k - 37 >> 2 || l[l.x + (k = k % 2 ? k - 38 : (k - 39) * l.w)] == '#' ? l[l.x + l.d] == '#' ? 0 : l.d : k;
-  l.p += l[l.x += l.d] == '.';
-  l[l.x] = 'P'
+  l = l.join ? l.join('\n') : l;             //if it's an Array of rows
+  w = l.indexOf('\n') + 1;                   //calculate row length
+  c = l.split(2).length - 1;                 //count gold
+  l = l.split('');                           //convert to character array
+  l.w = w;                                   //store width
+  l.c = c;                                   //store gold count
+  l.d = l.p = l.a = 0;                       //initialize player walking direction, points, ghosts angle
+  return l
 }
-var theme = {
-  ' ': '<span class="air">\u2219</span>',
-  '.': '<span class="gold">\u2219</span>',
-  '#': '<span class="wall">\u25A1</span>',
-  'P': '<span class="player">\u263B</span>'
-};
-var level = parseLevel(
-  '###################\n' +
-  '#....#.......#....#\n' +
-  '#.##.#.#####.#.##.#\n' +
-  '#.#.............#.#\n' +
-  '#.#.##.##.##.##.#.#\n' +
-  '#......#...#......#\n' +
-  '#.#.##.#####.##.#.#\n' +
-  '#.#......P......#.#\n' +
-  '#.##.#.#####.#.##.#\n' +
-  '#....#.......#....#\n' +
-  '###################');
-window.onkeydown = function(e)
+// 136 bytes
+var loadSprites = function(t, f)             //theme, filename with $1 placeholder
 {
-  level.keyCode = (e || window.event).keyCode;
+  for (var i in t)
+    with (new Image())                       //new is required in IE
+    {
+      alt = i;
+      onload = function()
+      {
+        t[this.alt] = getOuterHTML(this)
+      }
+      src = t[i].replace(/.*"(.*)".*/, f)
+    }
+}
+// 112 bytes
+var renderLevel = function(l, t)             //level object, theme object
+{
+  for (var h = '', x = 0; x < l.length; x++)
+  {
+    if (l[x] & 1) l.x = x;                   //store player position
+    if (l[x] & 8) l.g = x;                   //store ghost position
+    h += t[l[x]] ? t[l[x]] : l[x]            //theme is optional
+  }
+  return h
+}
+// 129 bytes
+var updatePlayer = function(l, k)
+{
+  l[l.x] = 0;
+  l.p += l[l.x += l.d = k - 37 >> 2 || l[l.x + (k = k % 2 ? k - 38 : (k - 39) * l.w)] & 4 ? l[l.x + l.d] & 4 ? 0 : l.d : k] == 2;
+  l.e |= l[l.x] & 8;
+  l[l.x] = 1
+}
+// 109 bytes
+var updateGhost = function(l, d)
+{
+  l[l.g] = l.o || 0;                         //remove ghost, place backup item
+  d = l.a % 4;
+  d = d % 2 ? d - 2 : (d - 1) * l.w;         //calculate walking direction
+  l[l.g + d] & 4                             //if walking into a wall
+    ? l.a++                                  //rotate ghost by 90 degree
+    : l.g += d;                              //else walk
+  l.e |= (l.o = l[l.g])                      //backup item from ghost position
+    & 1;                                     //check if hitting the player
+  l[l.g] = 8                                 //place ghost
+}
+var level = parseLevel(
+  '4444444444444444444\n' +
+  '4222242222222422224\n' +
+  '4244242444442424424\n' +
+  '4242222222222222424\n' +
+  '4242442440442442424\n' +
+  '4222222408042222224\n' +
+  '4242442444442442424\n' +
+  '4242222221222222424\n' +
+  '4244242444442424424\n' +
+  '4222242222222422224\n' +
+  '4444444444444444444');
+var theme = {
+  0: '<span class="air">\u2219</span>',      //doesn't need to be checked
+  1: '<span class="player">\u263B</span>',   //can be checked with &1
+  2: '<span class="gold">\u2219</span>',     //can be checked with &2
+  4: '<span class="wall">\u25A1</span>',     //can be checked with &4
+  8: '<span class="ghost">\u00A4</span>',    //can be checked with &8 or >7
+  '\n': '<br>'                               //required for IE
+}
+loadSprites(theme, 'sprite-$1.gif');         //load optional GIF files from the same directory
+document.onkeydown = function(e)
+{
+  level.keyCode = (e || window.event).keyCode
 }
 window.setInterval(function()
 {
   getFirstElement('PRE').innerHTML = renderLevel(level, theme);
   getFirstElement('#points').innerHTML = level.p;
-  updateLevel(level, level.keyCode || 0);
+  if (level.e || level.p == level.c)
+  {
+    getFirstElement('#end').innerHTML = level.e ? 'GAME OVER!' : 'YOU WIN!';
+    return;
+  }
+  updatePlayer(level, level.keyCode || 0);
+  updateGhost(level)
 }, 250)
 </script>
