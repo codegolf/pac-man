@@ -14,7 +14,7 @@
   .wall { color: #30F; text-shadow: 0 0 .2em #30F; }
   .ghost { color: #A0F; text-shadow: 0 0 .2em #A0F; }
 </style>
-<script>
+<script type="text/javascript">
 // 138 bytes
 var getFirstElement = function(a)
 {
@@ -53,14 +53,14 @@ var loadSprites = function(t, f)             //theme, filename with $1 placehold
       src = t[i].replace(/.*"(.*)".*/, f)
     }
 }
-// 112 bytes
-var renderLevel = function(l, t)             //level object, theme object
+// 115 bytes
+var renderLevel = function(l, t)             //level object, optional theme object
 {
   for (var h = '', x = 0; x < l.length; x++)
   {
     if (l[x] & 1) l.x = x;                   //store player position
     if (l[x] & 8) l.g = x;                   //store ghost position
-    h += t[l[x]] ? t[l[x]] : l[x]            //theme is optional
+    h += t && t[l[x]] ? t[l[x]] : l[x]       //use theme or original character (e.g. the newline)
   }
   return h
 }
@@ -110,16 +110,14 @@ document.onkeydown = function(e)
 {
   level.keyCode = (e || window.event).keyCode
 }
+renderLevel(level);                          //dummy call to get player and ghost positions
 window.setInterval(function()
 {
+  !level.e && level.p < level.c && (         //stop updating when lost or won
+    updatePlayer(level, level.keyCode || 0),
+    updateGhost(level));
   getFirstElement('PRE').innerHTML = renderLevel(level, theme);
   getFirstElement('SPAN').innerHTML = level.p;
-  if (level.e || level.p == level.c)
-  {
-    getFirstElement('H2').innerHTML = level.e ? 'GAME OVER!' : 'YOU WIN!';
-    return;
-  }
-  updatePlayer(level, level.keyCode || 0);
-  updateGhost(level)
+  getFirstElement('H2').innerHTML = level.e ? 'GAME OVER!' : level.p < level.c ? '' : 'YOU WIN!';
 }, 250)
 </script>
