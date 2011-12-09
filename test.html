@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <pre>LOADING...</pre>
 <h2></h2>
-<span>0</span> POINTS
+<span id="points">0</span> POINTS
 <style type="text/css">
   * { color: #FFF; font-family: Consolas, monospace; text-shadow: 0 0 .2em #FFF; }
   body { background: #000; margin: 4em; }
   h2 { font-size: 3em; margin: .2em 0; }
   img { border: 0; font-size: 32px; height: 32px; padding: 1px; vertical-align: top; width: 32px; }
   pre { font-size: 58px; line-height: 32px; margin: 0; }
-  span { font-size: 2em; line-height: 2em; }
+  #points { font-size: 2em; line-height: 2em; }
   .air { color: #222; text-shadow: 0 0 .2em #222; }
   .player { color: #FD0; text-shadow: 0 0 .2em #FD0; }
   .wall { color: #30F; text-shadow: 0 0 .2em #30F; }
@@ -117,7 +117,7 @@ window.setInterval(function()
     updatePlayer(level, level.keyCode || 0),
     updateGhost(level));
   getFirstElement('PRE').innerHTML = renderLevel(level, theme);
-  getFirstElement('SPAN').innerHTML = level.p;
-  getFirstElement('H2').innerHTML = level.e ? 'GAME OVER!' : level.p < level.c ? '' : 'YOU WIN!';
+  getFirstElement('#points').innerHTML = level.p;
+  getFirstElement('H2').innerHTML = level.e ? 'GAME OVER!' : level.p < level.c ? '' : 'YOU WIN!'
 }, 250)
 </script>
