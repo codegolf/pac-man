@@ -85,13 +85,14 @@ var updatePlayer = function(l, k)
   l.e |= l[l.x] & 8;
   l[l.x] = 1
 }
-// 136 bytes
+// 152 bytes
 var updateGhosts = function(a, l, g, d)
 {
-  for (g in a.reverse())                     //backup is forward, restore must be reverse
+  for (g = a.length; g--; )                  //backup is forward, restore must be reverse
+    l[a[g].x] = a[g].b;                      //restore item
+  for (g in a)
   {
     g = a[g];
-    l[g.x] = g.b;                            //restore item
     d = g.d % 4;
     d = d % 2 ? d - 2 : (d - 1) * l.w;       //calculate walking direction
     l[g.x + d] & 4                           //if walking into a wall
