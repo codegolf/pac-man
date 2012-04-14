@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>Pac-Man in 140byt.es by @maettig</title>
 <pre>LOADING...</pre>
 <h2></h2>
 <span id="points">0</span> POINTS
@@ -48,8 +49,7 @@ var initLevel = function(l)
     l[i] & 8 &&                              //if found a ghost then
       g.push({                               //append to the array of ghosts
         x: i,                                //ghost position
-        d: 0,                                //ghost walking direction (0 = north)
-        b: 0                                 //backup item from ghost position
+        d: 0                                 //ghost walking direction (0 = north)
       });
     if (l[i] & 1) l.x = i;                   //store player position
     l.c += l[i++] == 2                       //count gold
@@ -70,11 +70,12 @@ var loadSprites = function(t, f)             //theme, filename with $1 placehold
       src = t[i].replace(/.*"(.*)".*/, f)
     }
 }
-// 82 bytes
+// 88 bytes
 var renderLevel = function(l, t)             //level object, optional theme object
 {
-  for (var h = '', x = 0; x < l.length; x++)
-    h += t && t[l[x]] ? t[l[x]] : l[x];      //use theme or original character (e.g. the newline)
+  for (var c, h = '', x = 0; x < l.length; x++)
+    h += t && t[c = l[x] & 8 || l[x]]        //ghosts can sit on gold, render the ghost only
+      ? t[c] : c;                            //use theme or original character (e.g. the newline)
   return h
 }
 // 129 bytes
@@ -85,11 +86,11 @@ var updatePlayer = function(l, k)
   l.e |= l[l.x] & 8;
   l[l.x] = 1
 }
-// 152 bytes
+// 135 bytes
 var updateGhosts = function(a, l, g, d)
 {
-  for (g = a.length; g--; )                  //backup is forward, restore must be reverse
-    l[a[g].x] = a[g].b;                      //restore item
+  for (g in a)
+    l[a[g].x] &= ~8;                         //restore item
   for (g in a)
   {
     g = a[g];
@@ -97,10 +98,9 @@ var updateGhosts = function(a, l, g, d)
     d = d % 2 ? d - 2 : (d - 1) * l.w;       //calculate walking direction
     l[g.x + d] & 4                           //if walking into a wall
       ? g.d++                                //rotate ghost by 90 degree
-      : l.e |= 1 & (                         //else check if hitting the player
-        g.b = l[                             //and backup item from ghost position
-          g.x += d]);                        //and walk
-    l[g.x] = 8
+      : l.e |= 1 & l[                        //else check if hitting the player
+        g.x += d];                           //and walk
+    l[g.x] |= 8
   }
 }
 var levels = [parseLevel([
