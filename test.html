@@ -86,11 +86,11 @@ var updatePlayer = function(l, k)
   l.e |= l[l.x] & 8;
   l[l.x] = 1
 }
-// 135 bytes
+// 134 bytes
 var updateGhosts = function(a, l, g, d)
 {
   for (g in a)
-    l[a[g].x] &= ~8;                         //restore item
+    l[a[g].x] &= 7;                          //remove all ghosts first
   for (g in a)
   {
     g = a[g];
@@ -100,7 +100,7 @@ var updateGhosts = function(a, l, g, d)
       ? g.d++                                //rotate ghost by 90 degree
       : l.e |= 1 & l[                        //else check if hitting the player
         g.x += d];                           //and walk
-    l[g.x] |= 8
+    l[g.x] |= 8                              //place ghost
   }
 }
 var levels = [parseLevel([
