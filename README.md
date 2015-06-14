@@ -6,7 +6,7 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 [PLAY THE DEMO](http://output.jsbin.com/hitige/quiet)!
 
-Use your keyboard to control the movement
+Use your keyboard to control the movement.
 
 ### Source (470 Bytes)
 
