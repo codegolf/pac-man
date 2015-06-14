@@ -1,17 +1,17 @@
-# Pac-Man in < 512 Bytes
+# Pac-Man in < 512 Bytes of HTML+JS
 
 Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascript/pac-man-in-140byt.es.html) of the classic arcade game Pac-Man almost completely made with [140 bytes](http://140byt.es/) snippets. Golfed down by @aemkei. See the original [gist](https://gist.github.com/maettig/1384306).
 
 ### Demo
 
-[PLAY THE DEMO](https://rawgithub.com/codegolf/pac-man/master/index.html)!
+[PLAY THE DEMO](http://output.jsbin.com/hitige/quiet)!
 
 Use your keyboard to control the movement
 
 ### Source (470 Bytes)
 
 ```html
-<pre id=P><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493,5397
+<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493,5397
 ,5589,d,c,b,a])l+=L[i].toString(2).replace(/1/g,4).replace(/0/g,2)+3;l=l
 .split(""),w=14,x=76,X=48,e=d=k=D=!setInterval(onkeydown=function(a){if(
 a)k=a.which;else if(!e){for(l[x]=0,l[x+=d=k-37>>2||4&l[x+(o=k%2?k-38:(k-
@@ -34,7 +34,7 @@ a)k=a.which;else if(!e){for(l[x]=0,l[x+=d=k-37>>2||4&l[x+(o=k%2?k-38:(k-
 # ### #.###.#
 #.....#.....#
 #############
-
+```
 
 ### Annotated Source
 
