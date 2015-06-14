@@ -1,7 +1,7 @@
 {
-  "name": "pacMan",
+  "name": "pac-man",
 
-  "description": "Pac-Man made with 140 bytes snippets.",
+  "description": "Pac-Man in < 512 bytes of HTML and JavaScript",
 
   "keywords": [
     "game",
