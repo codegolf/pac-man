@@ -32,9 +32,9 @@ D = !                                     // ghost direction
 
 setInterval(onkeydown = function(v) {
 
-  if (v) {
+  if (v)
     k = v.which                           // get key code
-  } else if (!e){
+  else if (!e) {
     l[x] = 0;                             // reset cell
     l[
       x += d = k - 37 >> 2 || l[          // update player direction
@@ -70,7 +70,7 @@ setInterval(onkeydown = function(v) {
         || l[i]                           // fallback to original char
       ]
 
-    p.innerHTML = h;
+    p.innerHTML = h
   }
-}, 250);
+}, 250)
 </script>

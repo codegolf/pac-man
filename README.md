@@ -17,7 +17,7 @@ Use your keyboard to control the movement
 a)k=a.which;else if(!e){for(l[x]=0,l[x+=d=k-37>>2||4&l[x+(o=k%2?k-38:(k-
 39)*w)]?4&l[x+d]?0:d:o],e|=8&l[x],l[x]=1,l[X]&=7,h=D%4,h=h%2?h-2:(h-1)*w
 ,4&l[X+h]?D++:e|=1&l[X+=h],l[X]|=8,h=i=0;153>i;)h+=" o.\n#   x"[8&l[++i]
-||l[i]];p.innerHTML=h}},250);</script>
+||l[i]];p.innerHTML=h}},250)</script>
 ```
 
 ### Gameplay Video
@@ -115,8 +115,8 @@ setInterval(onkeydown = function(v) {
         || l[i]                           // fallback to original char
       ]
 
-    p.innerHTML = h;
+    p.innerHTML = h
   }
-}, 250);
+}, 250)
 </script>
 ```
