@@ -20,6 +20,10 @@ a)k=a.which;else if(!e){for(l[x]=0,l[x+=d=k-37>>2||4&l[x+(o=k%2?k-38:(k-
 ||l[i]];p.innerHTML=h}},250);</script>
 ```
 
+### Gameplay Video
+
+![Pac-Man](https://raw.githubusercontent.com/codegolf/pac-man/master/pacman.gif)
+
 ### Board Layout
 
 ```
