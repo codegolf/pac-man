@@ -8,7 +8,7 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 Use your keyboard to control the movement.
 
-### Source (470 Bytes)
+### Source (469 Bytes)
 
 ```html
 <pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493,5397
