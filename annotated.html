@@ -30,8 +30,13 @@ k =                                       // last keycode
 D = !                                     // ghost direction
 
 setInterval(onkeydown = function(a) {
-  for (
-    a && (k = a.which - 38, Q),           // get key code
+
+  k = a ? a.which - 38 : k;               // get key code
+
+  if (
+    !a &&                                 // skip on key press
+    x ^ X                                 // check ghost and player collission
+  ) for (
 
     l[x] = 0,                             // reset cell
     8 & l[                                // test if player hits ghost
