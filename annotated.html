@@ -1,5 +1,5 @@
 <pre id=p><script>
-l = ""
+l = "";
 for (i in L = [
   a = 8191,                               // #############
   b = 4161,                               // #     #     #
@@ -19,54 +19,55 @@ for (i in L = [
   .replace(/0/g, 2)                       // repace empty blocks
   + 3;                                    // placeholder for \n
 
-l = l.split("");
+l = l.split(""),
 
-w = 14;                                   // width
-x = 76;                                   // players x position
-X = 48;                                   // ghost x position
+w = 14,                                   // width
+x = 76,                                   // players x position
+X = 48,                                   // ghost x position
 
 e =                                       // game ended
 d =                                       // player direction
 k =                                       // last keycode
 D = !                                     // ghost direction
 
-setInterval(onkeydown = function(v) {
-  e && Q;
-  v && (k = v.which, Q);                  // get key code
+setInterval(onkeydown = function(a) {
+  for (
+  a && (k = a.which, Q),                  // get key code
 
-  l[x] = 0;                               // reset cell
-  l[
-    x += d = k - 37 >> 2 || l[            // update player direction
+  l[x] = 0,                               // reset cell
+  8 & l[                                  // test if player hits ghost
+    x += d = k - 37 >> 2 || 4 & l[        // update player direction
       x + (                               // update player position
         o =                               // calculate offset
           k % 2 ?                         // horizontal or vertical movement
-          k - 38 :                        // = horizontal
-          (k - 39) * w                    // = vertical
+            k - 38 :                      // = horizontal
+            (k - 39) * w                  // = vertical
       )
-    ] & 4 ? l[x + d] & 4 ? 0 : d : o      // detect wall collision
-  ] & 8;                                  // test if player hits ghost
-  l[x] = 1;                               // set player at new position
-  l[X] &= 7;                              // remove ghost first
+    ] ? 4 & l[x + d] ? 0 : d : o          // detect wall collision
+  ],
+  l[x] = 1,                               // set player at new position
+  l[X] &= 7,                              // remove ghost first
 
-  h = D % 4;
-  h = h % 2 ? h - 2 : (h - 1) * w;        // calculate walking direction
-  l[X + h] & 4                            // if walking into a wall
+  h = D % 4,
+  h = h % 2 ? h - 2 : (h - 1) * w,        // calculate walking direction
+  4 & l[X + h]                            // if walking into a wall
     ? D++                                 // rotate ghost by 90 degree
     : e |= 1 & l[                         // else check if hitting the player
       X += h                              // and walk
-    ];
-  l[X] |= 8                               // place ghost
+    ],
+    l[X] |= 8,                            // place ghost
 
-  for (h = i = 0; i < 153; )
-    h += ' o.\n#   x'[                    // 0 =   = empty
+    h = i = 0; 153 > i;
+  )
+    h += " o.\n#   x"[                    // 0 =   = empty
                                           // 1 = o = player
                                           // 2 = . = gold
                                           // 4 = # = wall
                                           // 8 = x = ghost
                                           // 3 = \n placeholder
-      l[++i] & 8                          // get character
+      8 & l[++i]                          // get character
       || l[i]                             // fallback to original char
-    ]
+    ];
 
   p.innerHTML = h
 }, 250)
