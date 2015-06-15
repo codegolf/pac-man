@@ -8,16 +8,17 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 Use your keyboard to control the movement.
 
-### Source (440 Bytes)
+### Source (430 Bytes)
 
 ```html
-<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493,5397
-,5589,d,c,b,a])l+=L[i].toString(2).replace(/1/g,4).replace(/0/g,2)+3;l=l
-.split(""),w=14,x=76,X=48,e=d=k=D=!setInterval(onkeydown=function(n){for
-(n&&(k=n.which-38,Q),l[x]=0,8&l[x+=d=k+1>>2||4&l[x+(o=k%2?k:k*w-w)]?4&l[
-x+d]?0:d:o],l[x]=1,l[X]&=7,h=D%4,h=h%2?h-2:(h-1)*w,4&l[X+h]?D++:e|=1&l[X
-+=h],l[X]|=8,h=i=0;153>i;)h+=" o.\n#   xxx"[l[++i]];p.innerHTML=h},250)<
-/script>
+<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d
+=5125,5493,5397,5589,d,c,b,a])l+=L[i].toString(2).replace
+(/1/g,4).replace(/0/g,2)+3;l=l.split(""),w=14,x=76,X=48,d
+=k=D=!setInterval(onkeydown=function(n){for(n&&(k=n.which
+-38,Q),l[x]=0,8&l[x+=d=k+1>>2||4&l[x+(o=k%2?k:k*w-w)]?4&l
+[x+d]?0:d:o],l[x]=1,l[X]&=7,b=D%4,b=b%2?b-2:(b-1)*w,4&l[X
++b]?D++:X+=b,l[X]|=8,h=i=0;153>i;)h+=" o.\n#   xxx"[l[++i
+]];p.innerHTML=h},250)</script>
 ```
 
 ### Gameplay Video
@@ -70,7 +71,6 @@ w = 14,                                   // width
 x = 76,                                   // players x position
 X = 48,                                   // ghost x position
 
-e =                                       // game ended
 d =                                       // player direction
 k =                                       // last keycode
 D = !                                     // ghost direction
@@ -93,13 +93,12 @@ setInterval(onkeydown = function(a) {
     l[x] = 1,                             // set player at new position
     l[X] &= 7,                            // remove ghost first
 
-    h = D % 4,
-    h = h % 2 ? h - 2 : (h - 1) * w,      // calculate walking direction
-    4 & l[X + h]                          // if walking into a wall
+    b = D % 4,
+    b = b % 2 ? b - 2 : (b - 1) * w,      // calculate walking direction
+    4 & l[X + b]                          // if walking into a wall
       ? D++                               // rotate ghost by 90 degree
-      : e |= 1 & l[                       // else check if hitting the player
-        X += h                            // and walk
-      ],
+      : X += b                            // else walk
+      ,
       l[X] |= 8,                          // place ghost
 
       h = i = 0;
