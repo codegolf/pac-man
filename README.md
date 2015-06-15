@@ -1,6 +1,6 @@
 # Pac-Man in < 512 Bytes of HTML+JS
 
-Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascript/pac-man-in-140byt.es.html) of the classic arcade game Pac-Man. Golfed down by @aemkei. See the original [gist](https://gist.github.com/maettig/1384306).
+Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascript/pac-man-in-140byt.es.html) of the classic arcade game Pac-Man. Golfed down by @aemkei, @p01, @subzey, @xem, @0ndras, @maettig. See the original [gist](https://gist.github.com/maettig/1384306).
 
 ### Demo
 
@@ -8,15 +8,16 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 Use your keyboard to control the movement.
 
-### Source (450 Bytes)
+### Source (446 Bytes)
 
 ```html
-<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493,5397,5589,
-d,c,b,a])l+=L[i].toString(2).replace(/1/g,4).replace(/0/g,2)+3;l=l.split(""),w
-=14,x=76,X=48,e=d=k=D=!setInterval(onkeydown=function(a){for(a&&(k=a.which,Q),
-l[x]=0,8&l[x+=d=k-37>>2||4&l[x+(o=k%2?k-38:(k-39)*w)]?4&l[x+d]?0:d:o],l[x]=1,l
-[X]&=7,h=D%4,h=h%2?h-2:(h-1)*w,4&l[X+h]?D++:e|=1&l[X+=h],l[X]|=8,h=i=0;153>i;)
-h+=" o.\n#   x"[8&l[++i]||l[i]];p.innerHTML=h},250)</script>
+<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493,5397
+,5589,d,c,b,a])l+=L[i].toString(2).replace(/1/g,4).replace(/0/g,2)+3;l=l
+.split(""),w=14,x=76,X=48,e=d=k=D=!setInterval(onkeydown=function(a){for
+(a&&(k=a.which-38,Q),l[x]=0,8&l[x+=d=k+1>>2||4&l[x+(o=k%2?k:k*w-w)]?4&l[
+x+d]?0:d:o],l[x]=1,l[X]&=7,h=D%4,h=h%2?h-2:(h-1)*w,4&l[X+h]?D++:e|=1&l[X
++=h],l[X]|=8,h=i=0;153>i;)h+=" o.\n#   x"[8&l[++i]||l[i]];p.innerHTML=h}
+,250)</script>
 ```
 
 ### Gameplay Video
@@ -76,32 +77,33 @@ D = !                                     // ghost direction
 
 setInterval(onkeydown = function(a) {
   for (
-  a && (k = a.which, Q),                  // get key code
+    a && (k = a.which - 38, Q),           // get key code
 
-  l[x] = 0,                               // reset cell
-  8 & l[                                  // test if player hits ghost
-    x += d = k - 37 >> 2 || 4 & l[        // update player direction
-      x + (                               // update player position
-        o =                               // calculate offset
-          k % 2 ?                         // horizontal or vertical movement
-            k - 38 :                      // = horizontal
-            (k - 39) * w                  // = vertical
-      )
-    ] ? 4 & l[x + d] ? 0 : d : o          // detect wall collision
-  ],
-  l[x] = 1,                               // set player at new position
-  l[X] &= 7,                              // remove ghost first
-
-  h = D % 4,
-  h = h % 2 ? h - 2 : (h - 1) * w,        // calculate walking direction
-  4 & l[X + h]                            // if walking into a wall
-    ? D++                                 // rotate ghost by 90 degree
-    : e |= 1 & l[                         // else check if hitting the player
-      X += h                              // and walk
+    l[x] = 0,                             // reset cell
+    8 & l[                                // test if player hits ghost
+      x += d = k + 1 >> 2 || 4 & l[       // update player direction
+        x + (                             // update player position
+          o =                             // calculate offset
+            k % 2 ?                       // horizontal or vertical movement
+              k  :                        // = horizontal
+              k * w - w                   // = vertical
+        )
+      ] ? 4 & l[x + d] ? 0 : d : o        // detect wall collision
     ],
-    l[X] |= 8,                            // place ghost
+    l[x] = 1,                             // set player at new position
+    l[X] &= 7,                            // remove ghost first
 
-    h = i = 0; 153 > i;
+    h = D % 4,
+    h = h % 2 ? h - 2 : (h - 1) * w,      // calculate walking direction
+    4 & l[X + h]                          // if walking into a wall
+      ? D++                               // rotate ghost by 90 degree
+      : e |= 1 & l[                       // else check if hitting the player
+        X += h                            // and walk
+      ],
+      l[X] |= 8,                          // place ghost
+
+      h = i = 0;
+      153 > i;
   )
     h += " o.\n#   x"[                    // 0 =   = empty
                                           // 1 = o = player

@@ -32,32 +32,33 @@ D = !                                     // ghost direction
 
 setInterval(onkeydown = function(a) {
   for (
-  a && (k = a.which, Q),                  // get key code
+    a && (k = a.which - 38, Q),           // get key code
 
-  l[x] = 0,                               // reset cell
-  8 & l[                                  // test if player hits ghost
-    x += d = k - 37 >> 2 || 4 & l[        // update player direction
-      x + (                               // update player position
-        o =                               // calculate offset
-          k % 2 ?                         // horizontal or vertical movement
-            k - 38 :                      // = horizontal
-            (k - 39) * w                  // = vertical
-      )
-    ] ? 4 & l[x + d] ? 0 : d : o          // detect wall collision
-  ],
-  l[x] = 1,                               // set player at new position
-  l[X] &= 7,                              // remove ghost first
-
-  h = D % 4,
-  h = h % 2 ? h - 2 : (h - 1) * w,        // calculate walking direction
-  4 & l[X + h]                            // if walking into a wall
-    ? D++                                 // rotate ghost by 90 degree
-    : e |= 1 & l[                         // else check if hitting the player
-      X += h                              // and walk
+    l[x] = 0,                             // reset cell
+    8 & l[                                // test if player hits ghost
+      x += d = k + 1 >> 2 || 4 & l[       // update player direction
+        x + (                             // update player position
+          o =                             // calculate offset
+            k % 2 ?                       // horizontal or vertical movement
+              k  :                        // = horizontal
+              k * w - w                   // = vertical
+        )
+      ] ? 4 & l[x + d] ? 0 : d : o        // detect wall collision
     ],
-    l[X] |= 8,                            // place ghost
+    l[x] = 1,                             // set player at new position
+    l[X] &= 7,                            // remove ghost first
 
-    h = i = 0; 153 > i;
+    h = D % 4,
+    h = h % 2 ? h - 2 : (h - 1) * w,      // calculate walking direction
+    4 & l[X + h]                          // if walking into a wall
+      ? D++                               // rotate ghost by 90 degree
+      : e |= 1 & l[                       // else check if hitting the player
+        X += h                            // and walk
+      ],
+      l[X] |= 8,                          // place ghost
+
+      h = i = 0;
+      153 > i;
   )
     h += " o.\n#   x"[                    // 0 =   = empty
                                           // 1 = o = player
