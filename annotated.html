@@ -60,15 +60,14 @@ setInterval(onkeydown = function(a) {
       h = i = 0;
       153 > i;
   )
-    h += " o.\n#   x"[                    // 0 =   = empty
+    h += " o.\n#   xxx"                   // 0 =   = empty
                                           // 1 = o = player
                                           // 2 = . = gold
                                           // 4 = # = wall
                                           // 8 = x = ghost
                                           // 3 = \n placeholder
-      8 & l[++i]                          // get character
-      || l[i]                             // fallback to original char
-    ];
+     [l[++i]]                             // get character
+
 
   p.innerHTML = h
 }, 250)
