@@ -15,8 +15,8 @@ Use your keyboard to control the movement.
 ,d=5125,5493,5397,5589,d,c,b,a])l+=L[i].toString(2)+3;l
 =l.split(""),w=14,x=76,X=48,d=k=D=setInterval(onkeydown
 =function(a){if(k=a?a.which-38:k,!a&&x^X)for(l[x]=2,l[x
-+=d=k+1>>2||1&l[x+(o=k%2?k:k*w-w)]?1&l[x+d]?0:d:o]=4,l[
-X]&=7,b=D%4,b=b%2?b-2:b*w-w,1&l[X+b]?D++:X+=b,l[X]|=8,h
++=d=k+1>>2||9&l[x+(o=k%2?k:k*w-w)]?9&l[x+d]?0:d:o]=4,l[
+X]&=7,b=D%4,b=b%2?b-2:b*w-w,9&l[X+b]?D++:X+=b,l[X]|=8,h
 =i=0;153>i;)h+=".# \no"[l[++i]]||"x";p.innerHTML=h},250
 )</script>
 ```
@@ -84,14 +84,14 @@ setInterval(onkeydown = function(a) {
 
     l[x] = 2,                             // reset cell
     l[
-      x += d = k + 1 >> 2 || 1 & l[       // update player direction
+      x += d = k + 1 >> 2 || 9 & l[       // update player direction
         x + (                             // update player position
           o =                             // calculate offset
             k % 2 ?                       // horizontal or vertical movement
               k  :                        // = horizontal
               k * w - w                   // = vertical
         )
-      ] ? 1 & l[x + d] ? 0 : d : o        // detect wall collision
+      ] ? 9 & l[x + d] ? 0 : d : o        // detect wall collision
     ] = 4,                                // set player at new position
     l[X] &= 7,                            // remove ghost first
 

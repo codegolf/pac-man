@@ -38,14 +38,14 @@ setInterval(onkeydown = function(a) {
 
     l[x] = 2,                             // reset cell
     l[
-      x += d = k + 1 >> 2 || 1 & l[       // update player direction
+      x += d = k + 1 >> 2 || 9 & l[       // update player direction
         x + (                             // update player position
           o =                             // calculate offset
             k % 2 ?                       // horizontal or vertical movement
               k  :                        // = horizontal
               k * w - w                   // = vertical
         )
-      ] ? 1 & l[x + d] ? 0 : d : o        // detect wall collision
+      ] ? 9 & l[x + d] ? 0 : d : o        // detect wall collision
     ] = 4,                                // set player at new position
     l[X] &= 7,                            // remove ghost first
 
