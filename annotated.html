@@ -46,7 +46,7 @@ setInterval(onkeydown = function(a) {
               k * w - w                   // = vertical
         )
       ] ? 1 & l[x + d] ? 0 : d : o        // detect wall collision
-    ] = 4,                             // set player at new position
+    ] = 4,                                // set player at new position
     l[X] &= 7,                            // remove ghost first
 
     b = D % 4,
@@ -55,7 +55,7 @@ setInterval(onkeydown = function(a) {
       ? D++                               // rotate ghost by 90 degree
       : X += b                            // else walk
       ,
-      l[X] = 8,                           // place ghost
+      l[X] |= 8,                           // place ghost
 
       h = i = 0;
       153 > i;
@@ -66,7 +66,7 @@ setInterval(onkeydown = function(a) {
                                           // 4 = # = wall
                                           // 8 = x = ghost
                                           // 3 = \n placeholder
-     [l[++i]]                             // get character
+     [l[++i]] || "x"                      // get character
 
 
   p.innerHTML = h

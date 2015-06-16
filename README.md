@@ -8,15 +8,16 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 Use your keyboard to control the movement.
 
-### Source (396 Bytes)
+### Source (402 Bytes)
 
 ```html
-<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125,5493
-,5397,5589 ,d,c,b,a])l+=L[i].toString(2)+3;l=l.split(""),w=14,x=76,
-X=48,d=k=D=!setInterval(onkeydown=function(n){if(k=n?n.which-38:k,!
-n&&x^X)for(l[x]=2,l[x+=d=k+1>>2||1&l[x+(o=k%2?k:k*w-w)]?1&l[x+d]?0:
-d:o]=4,l[X]&=7,b=D%4,b=b%2?b-2:(b-1)*w,1&l[X+b]?D++:X+=b,l[X]=8,h=i
-=0;153>i;)h+=".# \no   x"[l[++i]];p.innerHTML=h},250)</script>
+<pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981,d=5125
+,5493,5397,5589,d,c,b,a])l+=L[i].toString(2)+3;l=l.split(""),w
+=14,x=76,X=48,d=k=D=!setInterval(onkeydown=function(n){if(k=n?
+n.which-38:k,!n&&x^X)for(l[x]=2,l[x+=d=k+1>>2||1&l[x+(o=k%2?k:
+k*w-w)]?1&l[x+d]?0:d:o]=4,l[X]&=7,b=D%4,b=b%2?b-2:(b-1)*w,1&l[
+X+b]?D++:X+=b,l[X]|=8,h=i=0;153>i;)h+=".# \no   x"[l[++i]]||"x
+";p.innerHTML=h},250)</script>
 ```
 
 ### Gameplay Video
@@ -90,7 +91,7 @@ setInterval(onkeydown = function(a) {
               k * w - w                   // = vertical
         )
       ] ? 1 & l[x + d] ? 0 : d : o        // detect wall collision
-    ] = 4,                             // set player at new position
+    ] = 4,                                // set player at new position
     l[X] &= 7,                            // remove ghost first
 
     b = D % 4,
@@ -99,7 +100,7 @@ setInterval(onkeydown = function(a) {
       ? D++                               // rotate ghost by 90 degree
       : X += b                            // else walk
       ,
-      l[X] = 8,                           // place ghost
+      l[X] |= 8,                           // place ghost
 
       h = i = 0;
       153 > i;
@@ -110,7 +111,7 @@ setInterval(onkeydown = function(a) {
                                           // 4 = # = wall
                                           // 8 = x = ghost
                                           // 3 = \n placeholder
-     [l[++i]]                             // get character
+     [l[++i]] || "x"                      // get character
 
 
   p.innerHTML = h
