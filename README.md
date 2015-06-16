@@ -1,4 +1,4 @@
-# Pac-Man in 369 Bytes of HTML+JS
+# Pac-Man in 368 Bytes of HTML+JS
 
 Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascript/pac-man-in-140byt.es.html) of the classic arcade game Pac-Man. Golfed down by @aemkei, @p01, @subzey, @xem, @0ndras, @maettig. See the original [gist](https://gist.github.com/maettig/1384306).
 
@@ -19,8 +19,8 @@ for(a?k=a.which-38:x^X&&(l[x]=2,l[x+=d
 =k+1>>2||9&l[x+(o=k%2?k:~-k*14)]?9&l[x
 +d]?0:d:o]=4,l[X]&=7,b=D%4,b=b%2?b-2:~
 -b*14,9&l[X+b]?D++:X+=b,l[X]|=8,h=i=2)
-;154>i;p.innerHTML=h)h+=".# \no"[l[++i
-]]||"x"},X=151)'><pre id=p>
+;154>i;)p.innerHTML=h+=".# \no"[l[++i]
+]||"x"},X=151)'><pre id=p>
 ```
 
 ### Gameplay Video
