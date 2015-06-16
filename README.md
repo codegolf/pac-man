@@ -8,17 +8,17 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 Use your keyboard to control the movement.
 
-### Source (399 Bytes)
+### Source (395 Bytes)
 
 ```html
 <pre id=p><script>l="";for(i in L=[a=8191,b=4161,c=5981
 ,d=5125,5493,5397,5589,d,c,b,a])l+=L[i].toString(2)+3;l
 =l.split(""),w=14,x=76,X=48,d=k=D=setInterval(onkeydown
-=function(n){if(k=n?n.which-38:k,!n&&x^X)for(l[x]=2,l[x
+=function(a){if(k=a?a.which-38:k,!a&&x^X)for(l[x]=2,l[x
 +=d=k+1>>2||1&l[x+(o=k%2?k:k*w-w)]?1&l[x+d]?0:d:o]=4,l[
 X]&=7,b=D%4,b=b%2?b-2:b*w-w,1&l[X+b]?D++:X+=b,l[X]|=8,h
-=i=0;153>i;)h+=".# \no   x"[l[++i]]||"x";p.innerHTML=h}
-,250)</script>
+=i=0;153>i;)h+=".# \no"[l[++i]]||"x";p.innerHTML=h},250
+)</script>
 ```
 
 ### Gameplay Video
@@ -106,13 +106,14 @@ setInterval(onkeydown = function(a) {
       h = i = 0;
       153 > i;
   )
-    h += ".# \no   x"                     // 0 = . = gold
+    h += ".# \no"                         // 0 = . = gold
                                           // 1 = # = wall
                                           // 2 =   = empty
                                           // 4 = o = player
                                           // 8 = x = ghost
                                           // 3 = \n placeholder
-     [l[++i]] || "x"                      // get character
+     [l[++i]]                             // get character
+     || "x"                               // or place ghost
 
 
   p.innerHTML = h
