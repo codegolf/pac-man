@@ -8,18 +8,16 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 Use your keyboard to control the movement.
 
-### Source (386 Bytes)
+### Source (385 Bytes)
 
 ```html
-<body onload='l="";for(i=11;i--;)l+=[8191,4161,
-5981,5125,5589,5397,5493][i<7?i:10-i].toString(
-2)+3;l=l.split(""),x=76,X=48,d=k=D=setInterval(
-onkeydown=function(a){if(k=a?a.which-38:k,!a&&x
-^X)for(l[x]=2,l[x+=d=k+1>>2||9&l[x+(o=k%2?k:~-k
-*14)]?9&l[x+d]?0:d:o]=4,l[X]&=7,b=D%4,b=b%2?b-2
-:b*14-14,9&l[X+b]?D++:X+=b,l[X]|=8,h=i=0;153>i;
-)h+=".# \no"[l[++i]]||"x";p.innerHTML=h},250)'>
-<pre id=p>
+<body onload='l="";for(i=11;i--;)l+=[8191,4161,5981,5125,
+5589,5397,5493][i<7?i:10-i].toString(2)+3;l=l.split(""),x
+=76,X=48,d=k=D=setInterval(onkeydown=function(a){if(k=a?a
+.which-38:k,!a&&x^X)for(l[x]=2,l[x+=d=k+1>>2||9&l[x+(o=k%
+2?k:~-k*14)]?9&l[x+d]?0:d:o]=4,l[X]&=7,b=D%4,b=b%2?b-2:~-
+b*14,9&l[X+b]?D++:X+=b,l[X]|=8,h=i=0;153>i;)h+=".# \no"[l
+[++i]]||"x";p.innerHTML=h},250)'><pre id=p>
 ```
 
 ### Gameplay Video
