@@ -50,12 +50,12 @@ setInterval(onkeydown = function(a) {
     l[X] &= 7,                            // remove ghost first
 
     b = D % 4,
-    b = b % 2 ? b - 2 : (b - 1) * w,      // calculate walking direction
+    b = b % 2 ? b - 2 : b * w - w,        // calculate walking direction
     1 & l[X + b]                          // if walking into a wall
       ? D++                               // rotate ghost by 90 degree
       : X += b                            // else walk
       ,
-      l[X] |= 8,                           // place ghost
+      l[X] |= 8,                          // place ghost
 
       h = i = 0;
       153 > i;
