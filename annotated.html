@@ -19,7 +19,6 @@ for (i in L = [
 
 l = l.split(""),
 
-w = 14,                                   // width
 x = 76,                                   // players x position
 X = 48,                                   // ghost x position
 
@@ -43,14 +42,14 @@ setInterval(onkeydown = function(a) {
           o =                             // calculate offset
             k % 2 ?                       // horizontal or vertical movement
               k  :                        // = horizontal
-              k * w - w                   // = vertical
+              k * 14 - 14                 // = vertical
         )
       ] ? 9 & l[x + d] ? 0 : d : o        // detect wall collision
     ] = 4,                                // set player at new position
     l[X] &= 7,                            // remove ghost first
 
     b = D % 4,
-    b = b % 2 ? b - 2 : b * w - w,        // calculate walking direction
+    b = b % 2 ? b - 2 : b * 14 - 14,      // calculate walking direction
     1 & l[X + b]                          // if walking into a wall
       ? D++                               // rotate ghost by 90 degree
       : X += b                            // else walk
