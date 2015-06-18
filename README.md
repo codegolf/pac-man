@@ -1,4 +1,4 @@
-# Pac-Man in 353 Bytes of HTML+JS
+# Pac-Man in 348 Bytes of HTML+JS
 
 Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascript/pac-man-in-140byt.es.html) of the classic arcade game Pac-Man. Golfed down by @aemkei, @p01, @subzey, @xem, @0ndras, @maettig. See the original [gist](https://gist.github.com/maettig/1384306).
 
