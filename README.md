@@ -4,7 +4,7 @@ Based on the the [oldskool remake by @maettig ](http://maettig.com/code/javascri
 
 ### Demo
 
-[PLAY THE DEMO](http://output.jsbin.com/hitige/quiet)!
+[PLAY THE DEMO](http://rawgit.com/codegolf/pac-man/master/index.html)!
 
 Use your keyboard to control the movement.
 
